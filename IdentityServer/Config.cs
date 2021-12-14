@@ -15,7 +15,11 @@ namespace IdentityServer
             { 
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResources.Email()
+                new IdentityResources.Email(),
+                new IdentityResource("photos_app", "Web Photos", new []
+                {
+                    "role", "subscription", "testing"
+                })
             };
 
         public static IEnumerable<ApiResource> Apis =>
@@ -51,7 +55,7 @@ namespace IdentityServer
                 {
                     ClientId = "Photos App by OIDC",
                     ClientSecrets = { new Secret("secret".Sha256()) },
-
+                    PostLogoutRedirectUris = { "https://localhost:5001/signout-callback-passport" },
                     AllowedGrantTypes = GrantTypes.Code,
         
                     // NOTE: показывать ли пользователю страницу consent со списком запрошенных разрешений
@@ -67,7 +71,8 @@ namespace IdentityServer
                         // NOTE: Позволяет запрашивать профиль пользователя через id token
                         IdentityServerConstants.StandardScopes.Profile,
                         // NOTE: Позволяет запрашивать email пользователя через id token
-                        IdentityServerConstants.StandardScopes.Email
+                        IdentityServerConstants.StandardScopes.Email,
+                        "photos_app"
                     },
 
                     // NOTE: Надо ли добавлять информацию о пользователе в id token при запросе одновременно

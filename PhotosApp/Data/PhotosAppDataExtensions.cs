@@ -26,18 +26,18 @@ namespace PhotosApp.Data
                     if (env.IsDevelopment())
                     {
                         scope.ServiceProvider.GetRequiredService<PhotosDbContext>().Database.Migrate();
-                        scope.ServiceProvider.GetRequiredService<UsersDbContext>().Database.Migrate();
+                        // scope.ServiceProvider.GetRequiredService<UsersDbContext>().Database.Migrate();
 
                         var photosDbContext = scope.ServiceProvider.GetRequiredService<PhotosDbContext>();
-                        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<PhotosAppUser>>();
-                        var ticketsDbContext = scope.ServiceProvider.GetRequiredService<TicketsDbContext>();
-                        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                        // var userManager = scope.ServiceProvider.GetRequiredService<UserManager<PhotosAppUser>>();
+                        // var ticketsDbContext = scope.ServiceProvider.GetRequiredService<TicketsDbContext>();
+                        // var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
                         photosDbContext.SeedWithSamplePhotosAsync().Wait();
-                        roleManager.SeedWithSampleRolesAsync().Wait();  
-                        userManager.SeedWithSampleUsersAsync().Wait();
-                        ticketsDbContext.SeedWithSampleTicketsAsync().Wait();
-                        scope.ServiceProvider.GetRequiredService<TicketsDbContext>().Database.Migrate();
+                        // roleManager.SeedWithSampleRolesAsync().Wait();  
+                        // userManager.SeedWithSampleUsersAsync().Wait();
+                        // ticketsDbContext.SeedWithSampleTicketsAsync().Wait();
+                        // scope.ServiceProvider.GetRequiredService<TicketsDbContext>().Database.Migrate();
                     }
                 }
                 catch (Exception e)
