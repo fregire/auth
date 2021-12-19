@@ -36,7 +36,7 @@ namespace PhotosApp.Controllers
             return View(model);
         }
 
-        [Authorize(Policy = "MustOwnPhoto")]
+        // [Authorize(Policy = "MustOwnPhoto")]
         public async Task<IActionResult> GetPhoto(Guid id)
         {
             var photoEntity = await photosRepository.GetPhotoMetaAsync(id);
