@@ -27,8 +27,9 @@ namespace IdentityServer
             {
                 new ApiResource("photos_service", "Сервис фотографий")
                 {
-                    Scopes = { "photos" }
-                }
+                    Scopes = { "photos" },
+                    ApiSecrets = { new Secret("photos_service_secret".Sha256()) }
+                },
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -51,8 +52,10 @@ namespace IdentityServer
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = { "photos" }
                 },
-                new Client
+                new Client  
                 {
+                    AccessTokenLifetime = 30,
+                    AllowOfflineAccess = true,
                     ClientId = "Photos App by OIDC",
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     PostLogoutRedirectUris = { "https://localhost:5001/signout-callback-passport" },
